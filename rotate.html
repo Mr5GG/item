@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人作品</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .wrap {
+            width: 800px;
+            height: 300px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .wrap ul li {
+            width: 500px;
+            height: 180px;
+            background-color: skyblue;
+            position: absolute;
+            bottom: 0;
+        }
+        .wrap img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .ctrl-left,
+        .ctrl-right {
+            position: absolute;
+            top: 50%;
+            margin-top: 35px;
+            width: 35px;
+            height: 35px;
+            background-color: #000000;
+            color: #ffffff;
+            opacity: .3;
+            text-align: center;
+            line-height: 35px;
+            font-family: "宋体";
+            font-weight: bold;
+            font-size: 35px;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .ctrl-left {
+            left: 5px;
+        }
+        .ctrl-right {
+            right: 5px;
+        }
+        ol {
+            position: absolute;
+            left: 50%;
+            margin-left: -65px;
+            bottom: -25px;
+            width: 130px;
+            height: 10px;
+        }
+        ol li {
+            float: left;
+            width: 20px;
+            height: 10px;
+            margin-left: 5px;
+        }
+        ol li span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #cccccc;
+            text-indent: 1000em;
+            overflow: hidden;
+        }
+        ol li span.now {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul>
+        <li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+        <li><a href="#"><img src="images/2.jpg" alt=""></a></li>
+        <li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+        <li><a href="#"><img src="images/4.jpg" alt=""></a></li>
+        <li><a href="#"><img src="images/5.jpg" alt=""></a></li>
+    </ul>
+    <span class="ctrl-left"><</span>
+    <span class="ctrl-right">></span>
+    <ol>
+        <li><span class="now">1</span></li>
+        <li><span>2</span></li>
+        <li><span>3</span></li>
+        <li><span>4</span></li>
+        <li><span>5</span></li>
+    </ol>
+</div>
+
+<script src="js/jquery-1.12.4.min.js"></script>
+<script>
+    var json = [
+        {
+            width:500,
+            height:180,
+            left:75,
+            opacity:0,
+            zIndex:1
+        },
+        {
+            width:500,
+            height:180,
+            left:0,
+            opacity:.7,
+            zIndex:2
+        },
+        {
+            width:600,
+            height:200,
+            left:100,
+            opacity:1,
+            zIndex:3
+        },
+        {
+            width:500,
+            height:180,
+            left:300,
+            opacity:.7,
+            zIndex:2
+        },
+        {
+            width:500,
+            height:180,
+            left:135,
+            opacity:0,
+            zIndex:1
+        }
+    ]
+    $(function () {
+        change();
+        function change() {
+            for(var i = 0;i < json.length;i ++){
+                $('.wrap li').eq(i).animate({
+                    width:json[i].width,
+                    height:json[i].height,
+                    left:json[i].left,
+                    opacity:json[i].opacity,
+                    zIndex:json[i].zIndex
+                },500,function () {
+                    flag = true;
+                })
+            }
+        }
+        /*底部焦点控制*/
+        var flag = true; // 截流
+        var nowIndex = 0; // 控制自动播放张数
+        for( var i = 0;i < $('ol li span').length;i ++){
+            $('ol li').eq(i).on('mouseenter',function () {
+                var thisIndex = $(this).index();
+                if(thisIndex - nowIndex ===1 ) { // 鼠标经过时，索引大于原来的索引
+                    ctrlRight();
+                }
+                else if(thisIndex - nowIndex === -1) { // 鼠标经过时，索引小于原来的索引
+                    ctrlLeft();
+                }
+//                console.log(nowIndex)
+//                console.log(thisIndex)
+            })
+        }
+        /*左焦点控制轮播图*/
+        $('.ctrl-left').on('click',function () {
+            ctrlLeft();
+        })
+        /*右焦点控制轮播图*/
+        $('.ctrl-right').on('click',function () {
+            ctrlRight();
+        })
+        var timer = null;
+        timer = setInterval(function () {
+            ctrlRight();
+        },2000);
+        $('.wrap').on('mouseenter',function () {
+            clearInterval(timer);
+        })
+        $('.wrap').on('mouseleave',function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                ctrlRight();
+            },3000);
+        })
+        /*左焦点控制图片播放*/
+        function ctrlLeft() {
+            function bb() {
+                if(flag){
+                    flag = false;
+                    nowIndex--;
+                    if( nowIndex < 0 ){
+                        nowIndex = $('ol li span').length - 1;
+                    }
+                    $('ol li span').eq(nowIndex).addClass('now').parent().siblings().children().removeClass('now');
+                    json.push(json.shift());
+                    change();
+                }
+            }
+            return bb();
+        }
+        /*右焦点控制图片播放*/
+        function ctrlRight() {
+            function aa() {
+                if(flag) {
+                    flag = false;
+                    nowIndex++;
+                    if (nowIndex > $('ol li span').length - 1) {
+                        nowIndex = 0;
+                    }
+                    $('ol li span').eq(nowIndex).addClass('now').parent().siblings().children().removeClass('now');
+                    json.unshift(json.pop());
+                    change();
+                }
+            }
+            return aa();
+        }
+    })
+
+
+
+    //    function initCss() {
+    //        return {width:500, height:160, left:150, bottom:20, opacity:1, zIndex:3}
+    //    }
+    //    function thisCss() {
+    //        return { width:600, height:200, left:100, bottom:0, opacity:1, zIndex:3};
+    //    }
+    //    function nextCss() {
+    //        return {
+    //            width:500,
+    //            height:180,
+    //            left:300,
+    //            opacity:1,
+    //            zIndex:2
+    //        }
+    //    }
+    //    function prevCss() {
+    //        return {
+    //            width:500,
+    //            height:180,
+    //            left:0,
+    //            opacity:1,
+    //            zIndex:2
+    //        }
+    //    }
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+* {
+    margin:0;padding:0;
+}
+img {
+    vertical-align: top;
+}
+.w-slider {
+    width: 500px;
+    height: 150px;
+    margin:200px auto;
+    position: relative;
+    overflow: hidden;
+}
+.slider {
+    width: 500px;
+    height: 150px;
+
+}
+.slider-main {
+    width: 500px;
+    height: 150px;
+}
+.slider-main-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+}
+.slider-main-img img {
+    width: 100%;
+}
+.slider-ctrl {
+    text-align: center;
+    padding-top: 5px;
+    position: absolute;
+    top: 110px;
+    left: 29%;
+}
+.slider-ctrl-con {
+    width: 24px;
+    height: 20px;
+    display:inline-block;
+    background:url(../images/icon.png) no-repeat -24px -782px;
+    margin: 0 5px;
+    cursor: pointer;
+    text-indent: -20em;
+    overflow: hidden;
+}
+.current {
+    background-position: -24px -762px;
+}
+.slider-ctrl-prev,
+.slider-ctrl-next {
+    position: absolute;
+    top: 50%;
+    margin-top: -70px;
+    width: 35px;
+    height: 35px;
+    background-color: #000000;
+    color: #ffffff;
+    opacity: .3;
+    text-align: center;
+    line-height: 35px;
+    font-family: "宋体";
+    font-weight: bold;
+    font-size: 35px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    z-index: 100;
+}
+.slider-ctrl-prev {
+    left: -138px;
+}
+.slider-ctrl-next {
+    right: -143px;
+    background-position: -6px -44px;
+}
+
+
+
+
+
+
+
+
+

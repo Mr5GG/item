@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            text-align: center;
+            margin: 100px auto;
+        }
+        button {
+            font-size: 12px;
+        }
+        .bottom div {
+            width: 500px;
+            height: 300px;
+            display: none;
+            line-height: 300px;
+            font-size: 50px;
+            color: #ffffff;
+        }
+        .bottom .show {
+            display: block;
+        }
+        .top .green,
+        .bottom .green {
+            background-color: green;
+        }
+        .top .blue,
+        .bottom .blue {
+            background-color: blue;
+        }
+        .top .red,
+        .bottom .red {
+            background-color: red;
+        }
+        .top .purple,
+        .bottom .purple {
+            background-color: purple;
+        }
+        .top .orange,
+        .bottom .orange {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="top">
+            <button class="orange">显示一号盒子</button>
+            <button>显示二号盒子</button>
+            <button>显示三号盒子</button>
+            <button>显示四号盒子</button>
+            <button>显示五号盒子</button>
+        </div>
+        <div class="bottom" id="bottom">
+            <div class="show orange">一号盒子</div>
+            <div>二号盒子</div>
+            <div>三号盒子</div>
+            <div>四号盒子</div>
+            <div>五号盒子</div>
+        </div>
+    </div>
+    <script>
+        var btns = document.getElementsByTagName("button");
+        var divs = document.getElementById("bottom").getElementsByTagName("div");
+        for(var i = 0;i < btns.length;i++){
+
+            btns[i].index = i;
+            btns[i].onclick = function () {
+                for(var j = 0;j < btns.length;j++){
+                    btns[j].className = '';
+                    divs[j].className = ""; // 隐藏当前的所有盒子
+                }
+
+                divs[this.index].className = "show"; // 显示当前按钮对应的盒子
+                if(this.index == 0){
+                    this.className = "orange";
+                    divs[this.index].className = "show orange";
+                }
+                else if(this.index == 1){
+                    this.className = "blue";
+                    divs[this.index].className = "show blue";
+                }
+                else if(this.index == 2){
+                    this.className = "green";
+                    divs[this.index].className = "show green";
+                }
+                else if(this.index == 3){
+                    this.className = "purple";
+                    divs[this.index].className = "show purple";
+                }
+                else if(this.index == 4){
+                    this.className = "red";
+                    divs[this.index].className = "show red";
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

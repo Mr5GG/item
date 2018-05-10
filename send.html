@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="text">
+    <button id="btn">发送手机验证码</button>
+</body>
+    <script>
+        var btn = document.getElementById("btn");
+        var count = 5;
+        var timer = null; // 定时器的名字
+        btn.onclick = function () {
+            clearInterval(timer); //清除掉原来的定时器
+            var that = this;   // 把 btn 对象 给 that  var _this = this;
+            this.disabled = true;
+            timer = setInterval(function () { // 开启定时器 名字  timer
+                count --;
+                btn.innerHTML = count + "秒后重新发送";
+                if(count <= 0){
+                    count = 5;
+                    clearInterval(timer);
+                    that.disabled = false;
+                    that.innerHTML = "重新发送";
+                }
+            },1000)
+        }
+    </script>
+</html>

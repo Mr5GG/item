@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style>
+        * {
+            text-align: center;
+            font-size: 26px;
+        }
+    </style>
+</head>
+<body>
+<div class="time">
+    <p>
+        <span></span>
+        <span></span> :
+        <span></span>
+        <span></span> :
+        <span></span>
+        <span></span>
+    </p>
+</div>
+<script>
+    var downTime =function () {
+        var time = 2*60*60; // 倒计时事件
+        var spans = document.querySelectorAll('span');
+        console.log(spans);
+        var timer = setInterval(function () { // 通过定时器更新显示的时间
+            time -- ;
+            var h = Math.floor(time / 3600);
+            var m = Math.floor(time%3600 / 60);
+            var s = time%60;
+            spans[0].innerHTML = Math.floor(h/10);
+            spans[1].innerHTML = h%10;
+            spans[2].innerHTML = Math.floor(m/10);
+            spans[3].innerHTML = m%10;
+            spans[4].innerHTML = Math.floor(s/10);
+            spans[5].innerHTML = s%10;
+            if(time < 0) {
+                clearInterval(timer);
+            }
+        },1000)
+    }
+    downTime();
+</script>
+</body>
+</html>

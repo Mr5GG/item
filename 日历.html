@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 150px;
+            height: 180px;
+            background-color: skyblue;
+            margin: 100px auto;
+            padding-top: 20px;
+        }
+        .box p {
+            font-size: 12px;
+            text-align: center;
+            color: #fff;
+        }
+        .box span {
+            display: block;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin: 25px auto;
+            text-align: center;
+            line-height: 100px;
+            font-size: 55px;
+            font-weight: 500;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <p></p>
+        <span></span>
+    </div>
+    <script>
+        var box = document.getElementById("box");
+        var boys = box.children;
+        var date = new Date();
+        var week = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+        boys[0].innerHTML = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + week[date.getDay()];
+        boys[1].innerHTML = date.getDate();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-style: normal;
+}
+a {
+  text-decoration: none;
+  /*去除下划线*/
+  color: #333333;
+}
+.wrap {
+  border: 10px solid #fff;
+  border-image-source: url("../item/images/border.png");
+  border-image-slice: 50;
+  border-image-width: 10px;
+  border-image-repeat: round;
+  width: 350px;
+  text-align: center;
+  min-height: 300px;
+  background-color: pink;
+  margin: 50px auto;
+  padding-bottom: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background-color: #f0f3ef;
+}
+.wrap ul {
+  padding: 30px 35px 0 35px;
+}
+.wrap ul li {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+.wrap ul li .item {
+  display: block;
+  width: 270px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: pink;
+  margin-left: 5px;
+  line-height: 35px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.wrap ul li .item:hover {
+  color: #333333;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+.wrap ul li .item:hover i {
+  font-size: 18px;
+  color: #ffffff;
+}
+.wrap ul li .menu {
+  margin-left: 10px;
+  padding: 5px 30px 10px 30px;
+  width: 200px;
+  min-height: 50px;
+  -webkit-box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  -moz-box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  -ms-box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  -o-box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  background-color: #ccc;
+  display: none;
+}
+.wrap ul li .menu .subItemBox {
+  border-bottom: 1px solid #dddbd3;
+  width: 200px;
+  padding: 0px 10px;
+  margin-left: -10px;
+  margin-top: 5px;
+}
+.wrap ul li .menu .subItem {
+  display: block;
+  font-size: 12px;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #dddbd3;
+  line-height: 30px;
+  margin-top: 3px;
+  cursor: pointer;
+}
+.wrap ul li .menu .subItem:hover {
+  color: #333333;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.wrap ul li .menu .subItem:hover i {
+  font-size: 14px;
+  color: #ffffff;
+}
+.wrap ul li .menu .subMenu {
+  margin-left: 5px;
+  padding: 5px 0 10px 0px;
+  width: 190px;
+  min-height: 50px;
+  -webkit-box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  -moz-box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  -ms-box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  -o-box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  box-shadow: 0 -5px 15px rgba(155, 155, 155, 0.3) inset;
+  background-color: #ccc;
+  display: none;
+}
+.wrap ul li .menu .subMenu a {
+  display: block;
+  margin-left: 10px;
+  width: 150px;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: 2px solid pink;
+  box-shadow: 0 -2px pink inset;
+}
+.wrap ul li .menu .subMenu a span {
+  display: block;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 5px;
+  background-color: #dddbd3;
+  line-height: 25px;
+  margin-top: 3px;
+}
+.wrap ul li .menu .subMenu a span:hover {
+  color: #ffffff;
+  font-size: 14px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.3) inset;
+}

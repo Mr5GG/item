@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .box {
+            text-align: center;
+            width: 500px;
+            height: 350px;
+            margin: 100px auto;
+        }
+        button {
+            font-size: 12px;
+
+        }
+        button.pink{
+            background-color: pink;
+        }
+        .bottom li {
+            width: 500px;
+            height: 300px;
+            background-color: pink;
+            display: none;
+            font-size: 50px;
+        }
+        #bottom li.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box1">
+    <div class="top">
+        <button>显示一号盒子</button>
+        <button>显示二号盒子</button>
+        <button>显示三号盒子</button>
+        <button>显示四号盒子</button>
+        <button>显示五号盒子</button>
+    </div>
+    <div class="bottom" id="bottom">
+        <ul>
+            <li class="show">一号盒子</li>
+            <li>二号盒子</li>
+            <li>三号盒子</li>
+            <li>四号盒子</li>
+            <li>五号盒子</li>
+        </ul>
+    </div>
+</div>
+<div class="box" id="box2">
+    <div class="top">
+        <button>显示一号盒子</button>
+        <button>显示二号盒子</button>
+        <button>显示三号盒子</button>
+        <button>显示四号盒子</button>
+        <button>显示五号盒子</button>
+    </div>
+    <div class="bottom" id="bottom">
+        <ul>
+            <li class="show">一号盒子</li>
+            <li>二号盒子</li>
+            <li>三号盒子</li>
+            <li>四号盒子</li>
+            <li>五号盒子</li>
+        </ul>
+    </div>
+</div>
+<div class="box" id="box3">
+    <div class="top">
+        <button>显示一号盒子</button>
+        <button>显示二号盒子</button>
+        <button>显示三号盒子</button>
+        <button>显示四号盒子</button>
+        <button>显示五号盒子</button>
+    </div>
+    <div class="bottom" id="bottom">
+        <ul>
+            <li class="show">一号盒子</li>
+            <li>二号盒子</li>
+            <li>三号盒子</li>
+            <li>四号盒子</li>
+            <li>五号盒子</li>
+        </ul>
+    </div>
+</div>
+<script>
+    function tab(obj) {
+        var target = document.getElementById(obj);
+        var btns = target.getElementsByTagName("button");
+        var lis = target.getElementsByTagName("li");
+        for(var i = 0;i < btns.length;i++){
+
+            btns[i].index = i;//因为事件是按钮，所以不能用divs【i】代替btns【i】
+            var timer = null;
+            btns[i].onmouseover =   function (i) {
+                return function () {
+//                换色之前先清空当前所有按钮的颜色
+                    clearTimeout(timer);
+                    timer = setTimeout(function () {
+                        for(var j = 0;j < btns.length;j++){
+                            btns[j].className = '';
+                            //                    先隐藏当前的所有盒子
+                            lis[j].className = '';
+                        }
+                        btns[i].className = "pink";
+                        lis[i].className = "show";
+                    },200);
+                }
+            }(i);
+            btns[i].onmouseout = function () {
+                clearTimeout(timer);
+            }
+        }
+    }
+    tab("box1");
+    tab("box2");
+    tab("box3");
+    //    var btns = document.getElementsByTagName("button");
+    //    var divs = document.getElementById("bottom").getElementsByTagName("div");
+
+
+</script>
+</body>
+</html>

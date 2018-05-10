@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .slider {
+            width: 590px;
+            height: 470px;
+            background-color: pink;
+            margin: 20px auto;
+            position: relative;
+        }
+        .ctrl-left,
+        .ctrl-right {
+            position: absolute;
+            top: 50%;
+            margin-top: -25px;
+            width: 50px;
+            height: 50px;
+            background-color: #000000;
+            color: #ffffff;
+            opacity: .3;
+            text-align: center;
+            line-height: 50px;
+            font-family: "宋体";
+            font-weight: bold;
+            font-size: 50px;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+        }
+        .ctrl-left {
+            left: 5px;
+        }
+        .ctrl-right {
+            right: 5px;
+        }
+        .slider-img {
+            width: 590px;
+            height: 470px;
+            position: absolute;
+            display: none;
+        }
+        .slider ol {
+            position: absolute;
+            top: 420px;
+            left: 50px;
+            width: 165px;
+            height: 20px;
+        }
+        .slider ol li {
+            float: left;
+            width: 15px;
+            height: 15px;
+            margin-left: 5px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .current {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+<div class="slider">
+    <ul>
+        <li class="slider-img"><a href="#"><img src="images/img1.jpg" alt=""></a></li>
+        <li class="slider-img"><a href="#"><img src="images/img2.jpg" alt=""></a></li>
+        <li class="slider-img"><a href="#"><img src="images/img3.jpg" alt=""></a></li>
+        <li class="slider-img"><a href="#"><img src="images/img4.jpg" alt=""></a></li>
+        <li class="slider-img"><a href="#"><img src="images/img5.jpg" alt=""></a></li>
+        <li class="slider-img"><a href="#"><img src="images/img6.jpg" alt=""></a></li>
+        <li class="slider-img"><a href="#"><img src="images/img7.jpg" alt=""></a></li>
+        <li class="slider-img"><a href="#"><img src="images/img8.jpg" alt=""></a></li>
+    </ul>
+    <ol>
+        <li class="olli current">1</li>
+        <li class="olli">2</li>
+        <li class="olli">3</li>
+        <li class="olli">4</li>
+        <li class="olli">5</li>
+        <li class="olli">6</li>
+        <li class="olli">7</li>
+        <li class="olli">8</li>
+    </ol>
+    <span class="ctrl-left"><</span>
+    <span class="ctrl-right">></span>
+</div>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script>
+    $(function () {
+        var num = 0;
+        $(".slider-img").eq(0).css("display","block");
+        // 左控制按钮
+        $(".ctrl-left").click(function () {
+            num--;
+            if(num < 0){
+                num = 7;
+            }
+            $(".olli").eq(num).addClass("current").siblings().removeClass("current");
+            $(".slider-img").eq(num).fadeIn().siblings().fadeOut();
+        })
+        // 右控制按钮
+        $(".ctrl-right").click(function () {
+            num++;
+            if(num > 7){
+                num = 0;
+            }
+            $(".olli").eq(num).addClass("current").siblings().removeClass("current");
+            $(".slider-img").eq(num).fadeIn().siblings().fadeOut();
+        })
+        // 自动播放
+        var timer = null;
+        timer = setInterval(autoPlay,1000);
+        function autoPlay(){
+            num++;
+            if(num > 7){
+                num = 0;
+            }
+            $(".olli").eq(num).addClass("current").siblings().removeClass("current");
+            $(".slider-img").eq(num).fadeIn().siblings(500).fadeOut(500);
+        }
+        // 鼠标移到指定焦点显示该焦点对应图片
+        $(".olli").mouseenter(function () {
+            var idx = $(this).index();
+            $("ol li").eq(idx).addClass("current").siblings().removeClass("current");
+            $(".slider-img").eq(idx).fadeIn().siblings().fadeOut();
+            num = idx; // 鼠标离开焦点后从该焦点自动播放
+        })
+
+
+        $(".slider").mouseenter(function () {
+            clearInterval(timer);
+        });
+        $(".slider").mouseleave(function () {
+            clearInterval(timer);
+            timer = setInterval(autoPlay,1000);
+        });
+    })
+</script>
+</body>
+</html>
