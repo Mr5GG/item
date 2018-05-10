@@ -1,0 +1,64 @@
+@charset "UTF-8";
+@media (min-width: 350px) {
+  html {
+    font-size: 46.66666667px;
+  }
+}
+@media (min-width: 400px) {
+  html {
+    font-size: 53.33333333px;
+  }
+}
+@media (min-width: 450px) {
+  html {
+    font-size: 60px;
+  }
+}
+@media (min-width: 500px) {
+  html {
+    font-size: 66.66666667px;
+  }
+}
+@media (min-width: 550px) {
+  html {
+    font-size: 73.33333333px;
+  }
+}
+@media (min-width: 600px) {
+  html {
+    font-size: 80px;
+  }
+}
+@media (min-width: 650px) {
+  html {
+    font-size: 86.66666667px;
+  }
+}
+@media (min-width: 700px) {
+  html {
+    font-size: 93.33333333px;
+  }
+}
+@media (min-width: 720px) {
+  html {
+    font-size: 96px;
+  }
+}
+@media (min-width: 750px) {
+  html {
+    font-size: 100px;
+  }
+}
+body {
+  font-size: 14px;
+}
+body div {
+  width: 4rem;
+  height: 4rem;
+  background-color: pink;
+  font-size: 1rem;
+  line-height: 4rem;
+  text-align: center;
+  color: firebrick;
+  margin: 0 auto;
+}

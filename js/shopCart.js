@@ -72,6 +72,7 @@ $(function () {
                     $(".leave").removeClass("leave");
                     $(".show").removeClass("show");
                     $(".content[style]").removeAttr("style");
+                    $(".section-4").find("*").removeAttr("style"); // 找到第四屏幕所有的子节点
                     $.fn.fullpage.moveTo(1);
                 })
             } // 第八屏内容

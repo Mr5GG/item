@@ -1,0 +1,33 @@
+@charset "UTF-8";
+// 设备屏幕大小
+@pMuDaX:750px,720px,700px,650px,600px,550px,500px,450px,400px,350px;
+// 设计稿尺寸
+@psdWidth:750px;
+// 预设基准值
+@baseFontSize:100px;
+@len:length(@pMuDaX);
+
+// 函数调用
+.adapterMixin(@i) when(@i > 0) {
+    @media (min-width: extract(@pMuDaX,@i)){
+      html {
+        font-size: @baseFontSize / @psdWidth * extract(@pMuDaX,@i);
+      }
+    }
+  .adapterMixin(@i - 1);
+}
+.adapterMixin(@len);
+body {
+  font-size: 14px;
+  div {
+    width: 4rem;
+    height: 4rem;
+    background-color: pink;
+    font-size: 1rem;
+    line-height: 4rem;
+    text-align: center;
+    color: firebrick;
+    margin: 0 auto;
+  }
+}
+
